@@ -25,6 +25,7 @@ carpeta="$(valor CARPETA)"
 incluir_marca="$(valor INCLUIR_MARCA)"
 logo_archivo="$(valor LOGO)"
 logo_oscuro="$(valor LOGO_CABECERA_OSCURA)"
+paleta_marca="$(valor PALETA_MARCA)"
 [[ "$carpeta" =~ ^[a-z0-9_-]+$ ]] || { echo "CARPETA inválida en variants/$variante.conf"; exit 1; }
 
 salida="dist/$carpeta"
@@ -33,6 +34,11 @@ mkdir -p "$salida/stylesheets" "$salida/javascripts"
 
 # CSS: 00-import primero, después el resto en orden numérico
 cat src/[0-9][0-9]-*.css > "$salida/stylesheets/application.css"
+# Paleta de marca opcional (PALETA_MARCA=marcas/<org>.json): se agrega al final
+if [[ -n "$paleta_marca" ]]; then
+  [[ -f "variants/$paleta_marca" ]] || { echo "No existe variants/$paleta_marca" >&2; exit 1; }
+  python3 herramientas/marca.py "variants/$paleta_marca" >> "$salida/stylesheets/application.css"
+fi
 
 # Incrusta una imagen de variants/ como data URI en una variable JS
 incrustar() {

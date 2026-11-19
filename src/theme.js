@@ -20,6 +20,10 @@
 
   var C = window.SOSTENIDO_TEMA || {};
   var PALETAS = { sostenido: 'Sostenido', grafito: 'Grafito', papel: 'Papel' };
+  // Paleta de marca de la organización (PALETA_MARCA= en el .conf): va primera
+  if (C.paletaMarca) {
+    PALETAS = { marca: C.paletaMarca, sostenido: 'Sostenido', grafito: 'Grafito', papel: 'Papel' };
+  }
   var MODOS = ['auto', 'claro', 'oscuro'];
   var html = document.documentElement;
   var LOGO = (typeof SOSTENIDO_LOGO === 'string') ? SOSTENIDO_LOGO : null;
@@ -67,6 +71,7 @@
     marca.className = 's-marca' + (C.logoFondo ? ' s-marca--fondo' : '');
     if (C.enlace) { marca.href = C.enlace; }
     marca.setAttribute('aria-label', C.nombre || 'Inicio');
+    if (C.logoAlto) { marca.style.setProperty('--s-logo-alto', C.logoAlto + 'px'); }  // alto del logo en la cabecera
     if (C.logo === 'archivo') {
       // Con dos versiones, el CSS muestra la que corresponde según la cabecera
       // sea clara u oscura (ver .s-logo--cabecera-* en 30-layout.css)

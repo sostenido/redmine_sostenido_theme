@@ -73,6 +73,19 @@ su sistema.
 Las variantes y logos de cada instalación están en `.gitignore`: no se
 publican en el repositorio público.
 
+### Paleta de marca de una organización
+
+Además de las tres paletas, una variante puede sumar una cuarta con los colores
+de la organización (aparece primera en el menú de colores):
+
+1. Crear `variants/marcas/<organizacion>.json` con al menos el color primario:
+   `{"nombre": "Mi organización", "primario": "#8B1E2D", "acento": "#EF9F27", "cabecera": "oscura"}`.
+2. En el `.conf`: `PALETA_MARCA=marcas/<organizacion>.json`.
+3. En el `.js`: `paletaMarca: 'Mi organización'` y, si se quiere de inicio, `paleta: 'marca'`.
+
+`herramientas/marca.py` deriva el resto (fondos, bordes, enlaces, modo oscuro) y
+corrige cada color de texto hasta cumplir WCAG AA.
+
 ## Uso
 
 ```bash

@@ -15,6 +15,7 @@ html #top-menu{ background-color:var(--s-topbar); }
 /* ---------- Cabecera ---------- */
 html #header{
   background-color:var(--s-header);
+  background-image:var(--s-header-imagen, none);   /* degradado de la paleta de marca, si tiene */
   color:var(--s-header-text);
   border-block-end:1px solid var(--s-header-divider);
 }
@@ -35,7 +36,7 @@ html #header{
   color:var(--s-header-text);              /* el logo usa currentColor */
   text-decoration:none;
 }
-.s-marca svg, .s-marca img{ display:block; block-size:26px; inline-size:auto; }
+.s-marca svg, .s-marca img{ display:block; block-size:var(--s-logo-alto, 26px); inline-size:auto; }
 /* Logo de cliente en dos versiones: letras claras para cabecera oscura y
    letras oscuras para cabecera clara. La cabecera es oscura en todas las
    paletas salvo "papel" en modo claro. */
@@ -133,7 +134,7 @@ body.has-main-menu #header{ padding-block-end:2.5rem; }
   color:var(--s-text-muted);
 }
 .s-apariencia__opciones{
-  display:grid; grid-template-columns:repeat(3, 1fr); gap:4px;
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(52px, 1fr)); gap:4px;
   padding:3px; border-radius:var(--s-radio);
   background:var(--s-surface-2);
   border:1px solid var(--s-border);
