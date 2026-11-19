@@ -1,0 +1,30 @@
+/* ============================================================
+   26 · AJUSTES DEL MODO OSCURO
+   Lo que no se resuelve con variables: imágenes del núcleo que
+   están dibujadas en negro.
+   Cada regla va dos veces (oscuro elegido / automático con el
+   sistema en oscuro), porque CSS no permite unir @media y atributo
+   en un mismo selector.
+   ============================================================ */
+
+/* Barra de herramientas de la descripción (negrita, cursiva, títulos…).
+   Sus íconos son SVG negros puestos como imagen de fondo: se invierte el
+   botón entero. El fondo claro, invertido, queda gris oscuro. */
+html[data-modo="oscuro"] .jstElements button{
+  background-color:#D5D2C9;
+  border-color:#B4B0A5;
+  filter:invert(1) hue-rotate(180deg);
+}
+html[data-modo="oscuro"] .jstElements button:hover{ background-color:#E7E5DE; }
+/* El botón "pre" es texto, no imagen: se pinta oscuro para que, invertido, quede claro */
+html[data-modo="oscuro"] .jstElements .jstb_pre::before{ color:#16181D; }
+
+@media (prefers-color-scheme:dark){
+  html:not([data-modo="claro"]):not([data-modo="oscuro"]) .jstElements button{
+    background-color:#D5D2C9;
+    border-color:#B4B0A5;
+    filter:invert(1) hue-rotate(180deg);
+  }
+  html:not([data-modo="claro"]):not([data-modo="oscuro"]) .jstElements button:hover{ background-color:#E7E5DE; }
+  html:not([data-modo="claro"]):not([data-modo="oscuro"]) .jstElements .jstb_pre::before{ color:#16181D; }
+}

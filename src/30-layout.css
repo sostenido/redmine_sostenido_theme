@@ -1,0 +1,176 @@
+/* ============================================================
+   30 · ESTRUCTURA
+   Barra superior, cabecera con marca (logo + lema), menú del
+   proyecto con el botón "Nueva" destacado, pie con crédito.
+   ============================================================ */
+
+/* ---------- Barra superior ---------- */
+/* "html" adelante: algunos plugins pintan #header/#top-menu con su propio
+   color; así el tema siempre manda */
+html #top-menu{ background-color:var(--s-topbar); }
+.top-menu__links a, .top-menu__links a:link, .top-menu__links a:visited,
+#account .dropdown-trigger{ color:var(--s-topbar-text); }
+.top-menu__links svg.icon-svg, #account .dropdown-trigger .icon-svg{ stroke:var(--s-topbar-text); }
+
+/* ---------- Cabecera ---------- */
+html #header{
+  background-color:var(--s-header);
+  color:var(--s-header-text);
+  border-block-end:1px solid var(--s-header-divider);
+}
+/* Misma especificidad que el núcleo (#header a): así no pisa los enlaces
+   del menú del proyecto, que también viven dentro de #header */
+#header a{ color:var(--s-header-text); }
+#header a:hover{ color:var(--s-header-text); opacity:.85; }
+#header h1{ color:var(--s-header-text); font-weight:600; }
+
+/* Marca: logo arriba, lema abajo. La inserta theme.js como primer
+   hijo de #header; si la variante no tiene logo, no existe. */
+.s-marca{
+  float:inline-start;
+  display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:3px;
+  min-block-size:56px;
+  margin-inline-end:1.25rem; padding-inline-end:1.25rem;
+  border-inline-end:1px solid var(--s-header-divider);
+  color:var(--s-header-text);              /* el logo usa currentColor */
+  text-decoration:none;
+}
+.s-marca svg, .s-marca img{ display:block; block-size:26px; inline-size:auto; }
+/* Logo de cliente en dos versiones: letras claras para cabecera oscura y
+   letras oscuras para cabecera clara. La cabecera es oscura en todas las
+   paletas salvo "papel" en modo claro. */
+.s-marca .s-logo--cabecera-clara{ display:none; }
+html[data-paleta="papel"]:not([data-modo="oscuro"]) .s-marca .s-logo--cabecera-clara{ display:block; }
+html[data-paleta="papel"]:not([data-modo="oscuro"]) .s-marca .s-logo--cabecera-oscura{ display:none; }
+@media (prefers-color-scheme:dark){
+  html[data-paleta="papel"]:not([data-modo="claro"]):not([data-modo="oscuro"]) .s-marca .s-logo--cabecera-clara{ display:none; }
+  html[data-paleta="papel"]:not([data-modo="claro"]):not([data-modo="oscuro"]) .s-marca .s-logo--cabecera-oscura{ display:block; }
+}
+
+/* Logos de clientes con fondo blanco o colores que no contrastan con la
+   cabecera: se muestran sobre una placa clara (variante con logoFondo: true) */
+.s-marca--fondo{ padding-inline-end:1.25rem; }
+.s-marca--fondo img, .s-marca--fondo svg{
+  block-size:32px;
+  padding-block:5px; padding-inline:10px;
+  background:#FFFFFF;
+  border-radius:var(--s-radio);
+  box-sizing:content-box;
+}
+.s-marca__lema{
+  font-size:.6875rem; line-height:1.2;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--s-header-muted);
+  white-space:nowrap;
+}
+body.has-main-menu #header{ padding-block-end:2.5rem; }
+
+/* ---------- Menú del proyecto ---------- */
+#main-menu{
+  background:var(--s-menu-bg);
+  border-block-start:1px solid var(--s-header-divider);
+}
+#main-menu ul{ min-block-size:40px; }
+#main-menu li a, #main-menu li a:link, #main-menu li a:visited{
+  color:var(--s-menu-text);
+  font-size:.875rem;
+  padding-block:12px 10px;
+  padding-inline:14px;
+  line-height:18px;
+}
+#main-menu li a:hover{ background-color:var(--s-menu-hover); color:var(--s-text); }
+#main-menu li a.selected, #main-menu li a.selected:hover{
+  color:var(--s-text);
+  font-weight:600;
+  box-shadow:inset 0 -3px 0 var(--s-marker);
+}
+
+/* Botón "Nueva incidencia": la acción principal, siempre visible */
+#main-menu li a.new-object, #main-menu li a.new-object:link, #main-menu li a.new-object:visited{
+  background-color:var(--s-primary);
+  color:var(--s-primary-text);
+  border:0;
+  border-radius:var(--s-radio);
+  padding-block:6px; padding-inline:14px;
+  margin-block:0;
+  font-weight:600;
+  box-shadow:var(--s-sombra);
+}
+#main-menu li a.new-object:hover{
+  background-color:var(--s-primary-hover);
+  color:var(--s-primary-text);
+}
+#main-menu li a.new-object .icon-svg{ stroke:var(--s-primary-text); }
+#main-menu .menu-children{ border-radius:var(--s-radio); box-shadow:var(--s-sombra-lg); border-color:var(--s-border); }
+#main-menu .menu-children li a:hover{ background-color:var(--s-primary); color:var(--s-primary-text); }
+
+/* ---------- Contenido ---------- */
+#content{ border-radius:0; }
+
+/* ---------- Pie con crédito ---------- */
+#footer{
+  color:var(--s-text-muted);
+  border-block-start:1px solid var(--s-border);
+}
+.s-credito{
+  display:inline-flex; align-items:center; gap:.5rem;
+  margin-inline-start:1rem;
+  color:var(--s-text-muted);
+  font-size:.75rem;
+}
+.s-credito a{ color:var(--s-text); display:inline-flex; }
+.s-credito svg{ block-size:14px; inline-size:auto; }
+
+/* ---------- Apariencia (dentro del menú del usuario) ---------- */
+.s-apariencia{
+  display:flex; flex-direction:column; gap:10px;
+  padding-block:10px 12px; padding-inline:16px;
+  min-inline-size:240px;
+}
+.s-apariencia__grupo{ display:flex; flex-direction:column; gap:6px; }
+.s-apariencia__rotulo{
+  font-size:.6875rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--s-text-muted);
+}
+.s-apariencia__opciones{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:4px;
+  padding:3px; border-radius:var(--s-radio);
+  background:var(--s-surface-2);
+  border:1px solid var(--s-border);
+}
+#account .s-apariencia__opcion{
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  min-block-size:0; padding-block:6px 4px; padding-inline:4px;
+  background:transparent; border:1px solid transparent; border-radius:4px;
+  color:var(--s-text-muted); font-size:.6875rem; line-height:1.2;
+  cursor:pointer; box-shadow:none;
+}
+#account .s-apariencia__opcion:hover{ color:var(--s-text); background:var(--s-blanco); }
+#account .s-apariencia__opcion[aria-pressed="true"]{
+  background:var(--s-blanco); color:var(--s-text); font-weight:600;
+  border-color:var(--s-border); box-shadow:var(--s-sombra);
+}
+.s-apariencia__opcion svg{
+  inline-size:18px; block-size:18px;
+  stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+}
+.s-apariencia__opcion svg .s-relleno{ fill:currentColor; stroke:none; }
+
+/* Muestras de paleta: cabecera · fondo · acento de cada una, en el modo
+   actual. Colores fijos a propósito: cada muestra se ve igual sin importar
+   la paleta activa. */
+.s-muestra{
+  display:block; inline-size:30px; block-size:18px; border-radius:4px;
+  border:1px solid rgba(128,128,128,.35);
+}
+.s-muestra--sostenido{ background:linear-gradient(135deg, #23306B 0 48%, #F5F6FA 48% 78%, #EF9F27 78%); }
+.s-muestra--grafito{   background:linear-gradient(135deg, #3A3F47 0 48%, #E4E6E9 48% 78%, #EF9F27 78%); }
+.s-muestra--papel{     background:linear-gradient(135deg, #F3EAD3 0 48%, #EBE0C4 48% 78%, #23306B 78%); }
+html[data-modo="oscuro"] .s-muestra--sostenido{ background:linear-gradient(135deg, #141A33 0 48%, #0B0D12 48% 78%, #4E62B8 78%); }
+html[data-modo="oscuro"] .s-muestra--grafito{   background:linear-gradient(135deg, #24272C 0 48%, #2A2D32 48% 78%, #EF9F27 78%); }
+html[data-modo="oscuro"] .s-muestra--papel{     background:linear-gradient(135deg, #3E3A33 0 48%, #46423A 48% 78%, #9AA6E0 78%); }
+@media (prefers-color-scheme:dark){
+  html:not([data-modo="claro"]):not([data-modo="oscuro"]) .s-muestra--sostenido{ background:linear-gradient(135deg, #141A33 0 48%, #0B0D12 48% 78%, #4E62B8 78%); }
+  html:not([data-modo="claro"]):not([data-modo="oscuro"]) .s-muestra--grafito{   background:linear-gradient(135deg, #24272C 0 48%, #2A2D32 48% 78%, #EF9F27 78%); }
+  html:not([data-modo="claro"]):not([data-modo="oscuro"]) .s-muestra--papel{     background:linear-gradient(135deg, #3E3A33 0 48%, #46423A 48% 78%, #9AA6E0 78%); }
+}

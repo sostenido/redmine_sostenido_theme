@@ -1,0 +1,39 @@
+/* ============================================================
+   20 · PUENTE CON REDMINE 7
+   Redmine 7 pinta casi todo con variables (--oc-* de Open Color
+   y algunas propias). Acá se conectan a los tokens del tema, así
+   la mayor parte del núcleo cambia de color sin reescribir reglas.
+   ============================================================ */
+:root{
+  /* Variables propias de Redmine */
+  --color-header-background:var(--s-header);
+  --color-top-menu-background:var(--s-topbar);
+  --color-current-marker:var(--s-marker);
+  /* --fonts-main se mantiene: Noto Sans, la de Redmine */
+
+  /* Neutros: la escala de grises de Redmine pasa a la rampa del tema.
+     --oc-white NO se toca: Redmine también lo usa como color de texto
+     sobre fondos de color (insignias, avatares, tooltips). Los fondos
+     blancos se resuelven en 25-superficies.css. */
+  --oc-gray-0:var(--s-g0); --oc-gray-1:var(--s-g1); --oc-gray-2:var(--s-g2);
+  --oc-gray-3:var(--s-g3); --oc-gray-4:var(--s-g4); --oc-gray-5:var(--s-g5);
+  --oc-gray-6:var(--s-g6); --oc-gray-7:var(--s-g7); --oc-gray-8:var(--s-g8);
+  --oc-gray-9:var(--s-g9); --oc-gray-9-rgb:var(--s-g9-rgb);
+}
+
+/* Fondo general y texto base */
+html, body{ background:var(--s-bg); color:var(--s-text); }
+#wrapper, #main{ background:var(--s-bg); }
+#content{ background:var(--s-surface); color:var(--s-text); }
+#content h1, #content h2, #content h3, #content h4{ color:var(--s-text); }
+
+/* Enlaces: hover calmo (el núcleo usa rojo) */
+a, a:link, a:visited{ color:var(--s-link); }
+a:hover, a:active{ color:var(--s-link-hover); }
+
+/* Foco visible y consistente en todo el sitio */
+:focus-visible{
+  outline:2px solid var(--s-focus);
+  outline-offset:2px;
+  border-radius:2px;
+}

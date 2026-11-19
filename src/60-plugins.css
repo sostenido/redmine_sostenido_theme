@@ -1,0 +1,151 @@
+/* ============================================================
+   60 · PLUGINS DE TERCEROS
+   Ajustes para que plugins comunes respeten las paletas y el modo
+   oscuro. Las hojas de estilo de los plugins se cargan DESPUÉS del
+   tema: por eso cada selector lleva "html" adelante.
+   Solo se sobreescriben colores y forma; no se copia código de los
+   plugins.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   DMSF (gestión documental)
+   Las carpetas de sistema (".Issues", etc.) vienen en violeta fijo,
+   que no combina con ninguna paleta: pasan al color de acento.
+   ------------------------------------------------------------ */
+html .dmsf-system,
+html .dmsf-system a,
+html .dmsf-system a:link,
+html .dmsf-system a:visited{ color:var(--s-accent-ink); }
+html svg.dmsf-system{ stroke:var(--s-accent-ink); }
+
+html .dmsf-revision-box,
+html .dmsf-uploader,
+html .dmsf-log-header-box{
+  background-color:var(--s-surface-2);
+  color:var(--s-text);
+}
+html .dmsf-revision-inner-box,
+html .dmsf-uploader{ border-color:var(--s-border); }
+html div.dmsf-id-box{ color:var(--s-text-muted); }
+html .dmsf-workflows.locked a{ color:var(--s-text-muted); }
+html span.fileover{ background-color:color-mix(in srgb, var(--s-primary) 12%, var(--s-blanco)); }
+
+/* ------------------------------------------------------------
+   Agile (RedmineUP) — tablero
+   Las tarjetas venían amarillas en cualquier modo y el fondo del
+   tablero blanco. Ahora: columnas con el fondo secundario, tarjetas
+   con la superficie del tema, y el color de la tarjeta (por
+   prioridad, tipo, etc.) como franja a la izquierda.
+   ------------------------------------------------------------ */
+/* Fondo de columnas fijo, también al pasar el mouse. Agile (y el núcleo,
+   para cualquier table.list) cambian el fondo de la fila con :hover; en
+   el tablero esa "fila" es el tablero entero, que se ponía blanco de golpe.
+   Va con !important y sobre filas y celdas porque la versión Pro aplica
+   el hover con selectores propios. */
+html table.list.issues-board,
+html table.list.issues-board > tbody > tr,
+html table.list.issues-board > tbody > tr:hover,
+html table.list.issues-board > tbody > tr > td,
+html table.list.issues-board > tbody > tr:hover > td{ background-color:var(--s-surface-2) !important; }
+html table.list.issues-board > tbody > tr > td.issue-status-col.closed,
+html table.list.issues-board > tbody > tr:hover > td.issue-status-col.closed{ background-color:var(--s-g2) !important; }
+html table.issues-board td.issue-status-col{ vertical-align:top; }
+html.agile-board-fullscreen div.agile-board{ background:var(--s-bg); }
+
+/* Tarjeta. El !important vence al color en línea que el plugin pone
+   por usuario asignado; la selección del menú contextual se respeta. */
+html .issue-card:not(.context-menu-selection){
+  background-color:var(--s-blanco) !important;
+  color:var(--s-text);
+}
+html .issue-card{
+  border:1px solid var(--s-border);
+  border-radius:var(--s-radio);
+  box-shadow:var(--s-sombra);
+  padding-block:8px; padding-inline:10px;
+  margin:6px;
+  inline-size:calc(100% - 12px);
+  box-sizing:border-box;
+  transition:box-shadow var(--s-dur) var(--s-ease), border-color var(--s-dur) var(--s-ease);
+}
+html .issue-card:hover{ border-color:var(--s-border-strong); box-shadow:var(--s-sombra-lg); }
+
+/* Encabezado (tipo y número), título, atributos y comentario */
+html .issue-card p.issue-id,
+html .issue-card p.issue-id a,
+html .issue-card p.issue-id strong{ color:var(--s-text-muted); }
+html .issue-card p.name a{ color:var(--s-text); font-weight:600; }
+html .issue-card p.name a:hover{ color:var(--s-link); }
+html .issue-card:not(.context-menu-selection) .attributes,
+html .issue-card:not(.context-menu-selection) span.hours,
+html .issue-card em.info{ color:var(--s-text-muted); }
+html .issue-card .attributes a{ color:var(--s-link); }
+html .issue-card .info,
+html .issue-card div.sub-issues{ border-block-start-color:var(--s-border); }
+html .issue-card p.project{
+  background-color:var(--s-surface-2);
+  border-color:var(--s-border);
+  border-radius:4px;
+}
+
+/* Tarjetas cerradas: atenuadas */
+html .issues-board td.issue-status-col.closed .issue-card:not(.context-menu-selection){
+  background-color:var(--s-g1) !important;
+  opacity:.8;
+}
+
+/* Arrastrar y soltar */
+html table.list.issues-board > tbody > tr > td.issue-status-col.droppable-hover,
+html .issues-board td.issue-status-col .issue-card.droppable-hover{
+  background-color:color-mix(in srgb, var(--s-primary) 10%, var(--s-surface-2)) !important;
+}
+html .assignable-user.draggable-active{
+  background-color:var(--s-blanco);
+  border-color:var(--s-border-strong);
+  border-radius:var(--s-radio);
+}
+
+/* Color de la tarjeta como franja izquierda (en lugar de fondo pastel) */
+html .issue-card.bk-red{        border-inline-start:4px solid #E5484D; }
+html .issue-card.bk-green{      border-inline-start:4px solid #30A46C; }
+html .issue-card.bk-blue{       border-inline-start:4px solid #3E63DD; }
+html .issue-card.bk-turquoise{  border-inline-start:4px solid #12A594; }
+html .issue-card.bk-lightgreen{ border-inline-start:4px solid #5BB98B; }
+html .issue-card.bk-yellow{     border-inline-start:4px solid #E2B714; }
+html .issue-card.bk-orange{     border-inline-start:4px solid #EF9F27; }
+html .issue-card.bk-purple{     border-inline-start:4px solid #8E4EC6; }
+html .issue-card.bk-gray{       border-inline-start:4px solid #8D939C; }
+
+/* Lista de peticiones coloreada por el plugin: el número va sobre un
+   recuadro pastel. En oscuro el enlace claro no se lee sobre el pastel:
+   se pinta oscuro. */
+html[data-modo="oscuro"] table.list.issues tr.issue:not(.context-menu-selection)[class*="bk-"] td.id a{ color:#16181D; }
+@media (prefers-color-scheme:dark){
+  html:not([data-modo="claro"]):not([data-modo="oscuro"]) table.list.issues tr.issue:not(.context-menu-selection)[class*="bk-"] td.id a{ color:#16181D; }
+}
+
+/* Botones rápidos de la tarjeta (editar, comentar) que aparecen al pasar
+   el mouse. Agile Pro los muestra en una caja gris clara fija; acá van
+   sobre la superficie de la tarjeta, con íconos del color del texto.
+   Los nombres de clase de la versión Pro no son públicos: se cubren las
+   variantes conocidas por coincidencia parcial. */
+html .issue-card [class*="quick"],
+html .issue-card [class*="card-buttons"],
+html .issue-card [class*="card-actions"]{
+  background-color:var(--s-surface-2) !important;
+  border:1px solid var(--s-border);
+  border-radius:var(--s-radio);
+  box-shadow:var(--s-sombra);
+}
+html .issue-card [class*="quick"] a,
+html .issue-card [class*="card-buttons"] a,
+html .issue-card [class*="card-actions"] a{ color:var(--s-text-muted); }
+html .issue-card [class*="quick"] a:hover,
+html .issue-card [class*="card-buttons"] a:hover,
+html .issue-card [class*="card-actions"] a:hover{ color:var(--s-text); background-color:var(--s-menu-hover); border-radius:4px; }
+html .issue-card svg.icon-svg{ stroke:currentColor; }
+/* Íconos PNG (oscuros) dentro de la tarjeta: invertidos en modo oscuro */
+html[data-modo="oscuro"] .issue-card a:is(.icon-only,[class*="icon"]:empty):not(:has(svg)){ filter:invert(1) hue-rotate(180deg); }
+@media (prefers-color-scheme:dark){
+  html:not([data-modo="claro"]):not([data-modo="oscuro"]) .issue-card a:is(.icon-only,[class*="icon"]:empty):not(:has(svg)){ filter:invert(1) hue-rotate(180deg); }
+}

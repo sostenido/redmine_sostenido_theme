@@ -1,0 +1,21 @@
+/* ============================================================
+   50 · MOVIMIENTO
+   Transiciones cortas. Si el sistema del usuario pide menos
+   animación, se desactivan.
+   ============================================================ */
+a, #main-menu li a, .s-modo button{
+  transition:color var(--s-dur) var(--s-ease), background-color var(--s-dur) var(--s-ease),
+             box-shadow var(--s-dur) var(--s-ease), opacity var(--s-dur) var(--s-ease);
+}
+input[type="submit"], button[type="submit"], input[type="button"], button[type="button"]{
+  transition:background-color var(--s-dur) var(--s-ease), transform 80ms ease;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *, *::before, *::after{
+    transition-duration:1ms !important;
+    animation-duration:1ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+  }
+}

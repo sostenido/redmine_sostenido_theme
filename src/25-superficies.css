@@ -1,0 +1,54 @@
+/* ============================================================
+   25 · SUPERFICIES
+   Elementos a los que Redmine 7 les pone fondo blanco fijo
+   (var(--oc-white)). Acá toman --s-blanco: blanco en modo claro
+   (idéntico al núcleo) y la superficie oscura en modo oscuro.
+   Lista relevada de Redmine 7.0-stable (application.css,
+   dropdown.css, jstoolbar.css, gantt.css, responsive.css).
+   Cada selector lleva "html" adelante: dropdown.css, jstoolbar.css y
+   responsive.css se cargan DESPUÉS del tema, y sin ese refuerzo de
+   especificidad sus reglas ganaban (menú del usuario blanco en oscuro).
+   ============================================================ */
+html #content,
+html #footer,
+html #content .tabs ul li a.selected,
+html #content .tabs ul li a.selected:hover,
+html #main-menu .menu-children,
+html #main-menu .menu-children li a,
+html #main-menu li a.selected,
+html #main-menu li a.selected:hover,
+html .box table.list:not(.odd-even) tbody tr:nth-child(even),
+html .box .even,
+html table.list:not(.odd-even) tbody tr:nth-child(odd),
+html .odd,
+html tr.group td,
+html .cal .calbody.this-month,
+html .check_box_group,
+html .drdn-content,
+html .dropdown-content,
+html .sample-data,
+html .tribute-container ul,
+html div#version-summary,
+html div.modal,
+html div.pre-wrapper a.copy-pre-content-link,
+html div.thumbnail,
+html div.tooltip:hover span.tip,
+html input,
+html select,
+html textarea,
+html select[multiple=multiple],
+html input.autocomplete,
+html .wiki-preview,
+html .flyout-menu__search input[type='text'],
+html #project-jump .drdn-trigger{
+  background-color:var(--s-blanco);
+}
+
+/* Barra lateral y filas pares: un escalón por debajo de la superficie */
+#sidebar{
+  background:var(--s-surface-2);
+  border-inline-start-color:var(--s-border);
+}
+table.list:not(.odd-even) tbody tr:nth-child(even), .even{
+  background-color:var(--s-surface-2);
+}

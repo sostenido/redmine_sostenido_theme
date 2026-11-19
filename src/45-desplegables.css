@@ -1,0 +1,81 @@
+/* ============================================================
+   45 · DESPLEGABLES DE REDMINE (.drdn)
+   "Saltar a un proyecto", los menús "…" de las listas y los de los
+   comentarios. El núcleo enmarca cada ítem con un borde blanco
+   (se veía como una fila de cuadritos en modo oscuro): acá pasan a
+   ser una lista limpia, con títulos de grupo y resaltado suave.
+   "html" adelante para ganarle a responsive.css, que carga después.
+   ============================================================ */
+
+/* Disparador del selector de proyectos en la cabecera */
+html #project-jump .drdn-trigger{
+  block-size:28px;
+  padding-block:3px; padding-inline:10px 26px;
+  border:1px solid var(--s-border-strong);
+  border-radius:var(--s-radio);
+  color:var(--s-text);
+  background-position:calc(100% - 8px) 50%;
+}
+
+/* Contenedor */
+html .drdn-content{
+  padding:4px;
+  border:1px solid var(--s-border);
+  border-radius:var(--s-radio-lg);
+  box-shadow:var(--s-sombra-lg);
+  color:var(--s-text);
+}
+html #project-jump .drdn-content{ inline-size:300px; inset-block-start:32px; }
+
+/* Buscador interno */
+html .drdn-content .quick-search{ margin:4px 4px 6px; }
+html .drdn-content .autocomplete{
+  block-size:32px;
+  border:1px solid var(--s-border-strong);
+  border-radius:var(--s-radio);
+}
+
+/* Listas */
+html .drdn-items{ max-block-size:420px; }
+html div + .drdn-items{
+  border-block-start:1px solid var(--s-border);
+  margin-block-start:4px; padding-block-start:4px;
+}
+
+/* Ítems: sin marco, esquinas suaves */
+html .drdn-items > *{
+  border:0;
+  border-radius:4px;
+  padding-block:6px; padding-inline:10px;
+  margin-block:1px;
+  color:var(--s-text);
+}
+html .drdn-items > a:hover,
+html .contextual .drdn-items > a:hover,
+html .journal-actions .drdn-items > a:hover{
+  border:0;
+  background-color:var(--s-menu-hover);
+  color:var(--s-text);
+  text-decoration:none;
+}
+html .drdn-items > *:focus{
+  border:0;
+  outline:2px solid var(--s-focus);
+  outline-offset:-2px;
+}
+html .drdn-items > a.selected{
+  background-color:color-mix(in srgb, var(--s-primary) 12%, var(--s-blanco));
+  font-weight:600;
+}
+html .drdn-items.selection > *.selected::before{ color:var(--s-marker); }
+
+/* Títulos de grupo ("Usados recientemente", "Todos los proyectos") */
+html .drdn-items > strong{
+  padding-block:10px 4px; padding-inline:10px;
+  font-size:.6875rem; font-weight:600;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--s-text-muted);
+}
+html .drdn-items > strong:first-child{ padding-block-start:4px; }
+html .drdn-items.selection > strong::before{ display:none; }
+html .drdn-items > span{ color:var(--s-text-muted); }

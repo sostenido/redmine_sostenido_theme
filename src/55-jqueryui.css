@@ -1,0 +1,98 @@
+/* ============================================================
+   55 · VENTANAS Y COMPONENTES DE jQuery UI
+   Diálogos ("Editar petición" del tablero Agile, etc.), calendario,
+   menús de autocompletar y tooltips. jQuery UI trae colores fijos
+   (texto #333 sobre blanco): en modo oscuro las etiquetas quedaban
+   gris sobre gris. Acá toman los colores de la paleta.
+   "html" adelante: algunos plugins cargan su propia copia del tema
+   de jQuery UI después del nuestro.
+   ============================================================ */
+
+html .ui-widget,
+html .ui-widget input, html .ui-widget select,
+html .ui-widget textarea, html .ui-widget button{ font-family:inherit; }
+
+html .ui-widget-content{
+  background:var(--s-blanco);
+  color:var(--s-text);
+  border-color:var(--s-border);
+}
+html .ui-widget-content a{ color:var(--s-link); }
+html .ui-widget-header{
+  background:var(--s-surface-2);
+  color:var(--s-text);
+  border-color:var(--s-border);
+}
+html .ui-widget-header a{ color:var(--s-text); }
+
+/* Diálogos */
+html .ui-dialog{
+  padding:0;
+  border-radius:var(--s-radio-lg);
+  box-shadow:var(--s-sombra-lg);
+}
+html .ui-dialog .ui-dialog-titlebar{
+  padding-block:.7em; padding-inline:1em;
+  border:0; border-block-end:1px solid var(--s-border);
+  border-radius:var(--s-radio-lg) var(--s-radio-lg) 0 0;
+}
+html .ui-dialog .ui-dialog-title{ font-weight:600; }
+html .ui-dialog .ui-dialog-content{ padding:1em; color:var(--s-text); }
+html .ui-dialog .ui-dialog-content label,
+html .ui-dialog .ui-dialog-content p,
+html .ui-dialog .ui-dialog-content legend{ color:var(--s-text); }
+html .ui-dialog .ui-dialog-buttonpane{
+  background:var(--s-blanco);
+  border-block-start-color:var(--s-border);
+}
+
+/* Botones y estados */
+html .ui-state-default,
+html .ui-widget-content .ui-state-default,
+html .ui-widget-header .ui-state-default,
+html .ui-button{
+  background:var(--s-blanco);
+  color:var(--s-text);
+  border-color:var(--s-border-strong);
+}
+html .ui-state-default a, html .ui-state-default a:link, html .ui-state-default a:visited,
+html a.ui-button, html a.ui-button:link, html a.ui-button:visited{ color:var(--s-text); }
+html .ui-state-hover, html .ui-widget-content .ui-state-hover, html .ui-widget-header .ui-state-hover,
+html .ui-state-focus, html .ui-widget-content .ui-state-focus, html .ui-widget-header .ui-state-focus,
+html .ui-button:hover, html .ui-button:focus{
+  background:var(--s-surface-2);
+  color:var(--s-text);
+  border-color:var(--s-border-strong);
+}
+html .ui-state-active, html .ui-widget-content .ui-state-active, html .ui-widget-header .ui-state-active,
+html .ui-button:active, html .ui-button.ui-state-active:hover{
+  background:var(--s-primary);
+  border-color:var(--s-primary);
+  color:var(--s-primary-text);
+}
+html .ui-state-active a, html .ui-state-active a:link, html .ui-state-active a:visited{ color:var(--s-primary-text); }
+html .ui-state-highlight, html .ui-widget-content .ui-state-highlight, html .ui-widget-header .ui-state-highlight{
+  background:color-mix(in srgb, var(--s-accent) 22%, var(--s-blanco));
+  border-color:var(--s-accent);
+  color:var(--s-text);
+}
+html .ui-state-error, html .ui-widget-content .ui-state-error, html .ui-widget-header .ui-state-error{
+  background:color-mix(in srgb, var(--s-error) 15%, var(--s-blanco));
+  border-color:var(--s-error);
+  color:var(--s-text);
+}
+
+/* Tooltips */
+html .ui-tooltip{
+  background:var(--s-blanco);
+  color:var(--s-text);
+  border-color:var(--s-border);
+  box-shadow:var(--s-sombra-lg);
+}
+
+/* Íconos de jQuery UI: son PNG oscuros. En oscuro se invierten
+   (salvo los que van sobre fondo de color, que ya son blancos). */
+html[data-modo="oscuro"] .ui-icon:not(.ui-state-active .ui-icon){ filter:invert(1); }
+@media (prefers-color-scheme:dark){
+  html:not([data-modo="claro"]):not([data-modo="oscuro"]) .ui-icon:not(.ui-state-active .ui-icon){ filter:invert(1); }
+}

@@ -1,0 +1,12 @@
+# Generado por build.sh
+dist/
+preview/index.html
+
+# Variantes de instalaciones reales y logos de terceros: NO van al repositorio
+# público. Solo se publican la demo y la plantilla.
+variants/*
+!variants/LEEME.md
+!variants/demo.conf
+!variants/demo.js
+!variants/cliente.conf
+!variants/cliente.js

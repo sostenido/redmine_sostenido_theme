@@ -1,0 +1,65 @@
+<body class="has-main-menu controller-issues action-index">
+<div id="wrapper">
+<nav class="top-menu" id="top-menu">
+  <div class="general-menu"><div class="top-menu__links"><ul>
+    <li><a href="#">Inicio</a></li><li><a href="#">Mi página</a></li>
+    <li><a href="#">Proyectos</a></li><li><a href="#">Administración</a></li><li><a href="#">Ayuda</a></li>
+  </ul></div></div>
+  <div class="profile-menu">
+    <div id="account" class="dropdown">
+      <a href="#" class="dropdown-trigger" onclick="event.preventDefault();event.stopPropagation();this.nextElementSibling.classList.toggle('hidden')"><span class="avatar"></span> ▾</a>
+      <div class="dropdown-content hidden">
+        <div class="user-info"><span class="user-name">Ana Pérez</span><span class="user-login">@ana</span></div>
+        <div class="dropdown-divider"></div>
+        <ul><li><a href="#">Mi cuenta</a></li><li><a href="#">Desconectar</a></li></ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="header">
+  <div id="quick-search"><label for="q"><a href="#">Buscar</a>:</label> <input type="text" id="q" class="small" placeholder="Buscar…"></div>
+  <h1>Mesa de ayuda</h1>
+  <div id="main-menu" class="tabs"><ul>
+    <li><a href="#" class="new-object">+ Nueva petición</a></li>
+    <li><a href="#">Resumen</a></li><li><a href="#">Actividad</a></li>
+    <li><a href="#" class="selected">Peticiones</a></li><li><a href="#">Tiempo dedicado</a></li>
+    <li><a href="#">Wiki</a></li><li><a href="#">Configuración</a></li>
+  </ul></div>
+</div>
+<div id="main">
+  <div id="sidebar">
+    <h3>Peticiones</h3>
+    <ul><li><a href="#">Ver todas las peticiones</a></li><li><a href="#">Resumen</a></li><li><a href="#">Calendario</a></li></ul>
+    <h3>Mis consultas</h3>
+    <ul><li><a href="#">Asignadas a mí</a></li><li><a href="#">Vencidas</a></li></ul>
+  </div>
+  <div id="content">
+    <h2>Peticiones</h2>
+    <div class="flash notice">Petición #128 creada correctamente.</div>
+    <table class="list issues">
+      <thead><tr><th>#</th><th>Tipo</th><th>Estado</th><th>Prioridad</th><th>Asunto</th><th>Asignado a</th></tr></thead>
+      <tbody>
+        <tr><td><a href="#">128</a></td><td>Soporte</td><td>Nueva</td><td>Alta</td><td><a href="#">La impresora del 2º piso no imprime</a></td><td>Juan Pérez</td></tr>
+        <tr><td><a href="#">127</a></td><td>Tarea</td><td>En curso</td><td>Normal</td><td><a href="#">Renovar certificado del servidor de correo</a></td><td>Ana Gómez</td></tr>
+        <tr><td><a href="#">126</a></td><td>Soporte</td><td>Resuelta</td><td>Baja</td><td><a href="#">Alta de usuario en el sistema de facturación</a></td><td>Juan Pérez</td></tr>
+        <tr><td><a href="#">125</a></td><td>Error</td><td>En curso</td><td>Urgente</td><td><a href="#">Respaldo nocturno falla en el nodo 2</a></td><td>Ana Gómez</td></tr>
+      </tbody>
+    </table>
+    <div class="box tabular">
+      <p><label for="asunto">Asunto</label><input type="text" id="asunto" size="50" value="Revisar acceso VPN"></p>
+      <p><label for="estado">Estado</label><select id="estado"><option>Nueva</option><option>En curso</option></select></p>
+      <p><label for="desc">Descripción</label><textarea id="desc" rows="3" cols="50">Detalle de la petición…</textarea></p>
+    </div>
+    <input type="submit" value="Crear"> <input type="button" value="Vista previa">
+    <p class="nota-preview">Vista previa simulada: reproduce la estructura de Redmine 7 sin el CSS completo del núcleo. Las opciones de modo y colores están en el menú del usuario (avatar, arriba a la derecha).</p>
+  </div>
+</div>
+<div id="footer">Powered by Redmine © 2006-2026 Jean-Philippe Lang</div>
+</div>
+<script>
+document.addEventListener('click', function (e) {
+  var m = document.querySelector('#account .dropdown-content');
+  if (m && !m.contains(e.target)) { m.classList.add('hidden'); }
+});
+</script>
+</body>
